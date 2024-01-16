@@ -49,7 +49,8 @@ import urllib.request
 import socket
 import time 
 
-
+# Store python path as a variable
+pythonpath = subprocess.check_output(["which", "python3"], text=True).strip()
 
 class lab1a(unittest.TestCase):
     """All test cases for lab1a - printing"""
@@ -63,7 +64,7 @@ class lab1a(unittest.TestCase):
     def test_a(self):
         """[Lab 1] - [Investigation 3] - [Part 2] - printing - Test for errors running: ./lab1a.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1a.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1a.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, err = p.communicate()
         # Fail test if process returns a no zero exit status
         return_code = p.wait()
@@ -82,7 +83,7 @@ class lab1a(unittest.TestCase):
     def test_b(self):
         """[Lab 1] - [Investigation 3] - [Part 2] - printing - Test output for correct output "Hello world": ./lab1a.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1a.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1a.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, _ = p.communicate()
         # Fail test if output is different from expected_output
         expected_output = b'Hello world\n'
@@ -100,7 +101,7 @@ class lab1b(unittest.TestCase):
     def test_a(self):
         """[Lab 1] - [Investigation 4] - string objects & printing - Test for errors running: ./lab1b.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1b.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1b.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, err = p.communicate()
         # Fail test if process returns a no zero exit status
         return_code = p.wait()
@@ -118,7 +119,7 @@ class lab1b(unittest.TestCase):
     def test_b(self):
         """[Lab 1] - [Investigation 4] - string objects & printing - Test for correct output "How old are you Isaac?": ./lab1b.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1b.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1b.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, _ = p.communicate()
         # Fail test if output is different from expected_output
         expected_output = b'How old are you Isaac?\n'
@@ -137,7 +138,7 @@ class lab1c(unittest.TestCase):
     def test_a(self):
         """[Lab 1] - [Investigation 4] - integer objects & printing - Test for errors running: ./lab1c.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1c.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1c.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, err = p.communicate()
         # Fail test if process returns a no zero exit status
         return_code = p.wait()
@@ -155,7 +156,7 @@ class lab1c(unittest.TestCase):
     def test_b(self):
         """[Lab 1] - [Investigation 4] - integer objects & printing - Test output for correct output "Isaac is 72 years old!": ./lab1c.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1c.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1c.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, _ = p.communicate()
         # Fail test if output is different from expected_output
         expected_output = b'Isaac is 72 years old!\n'
@@ -173,7 +174,7 @@ class lab1d(unittest.TestCase):
     def test_a(self):
         """[Lab 1] - [Investigation 5] - math operators - Test for errors running: ./lab1d.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1d.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1d.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, err = p.communicate()
         # Fail test if process returns a no zero exit status
         return_code = p.wait()
@@ -191,7 +192,7 @@ class lab1d(unittest.TestCase):
     def test_b(self):
         """[Lab 1] - [Investigation 5] - math operators - Test output for correct output "10 + 2 * 5 = 20": ./lab1d.py"""
         # Run students program
-        p = subprocess.Popen(['/usr/bin/python3', './lab1d.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen([pythonpath, './lab1d.py'], stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, _ = p.communicate()
         # Fail test if output is different from expected_output
         expected_output = b'10 + 2 * 5 = 20\n'
@@ -246,7 +247,7 @@ def displayReportHeader():
     print(len(report_heading) * '=')
     print('    User login name:', os.getlogin())
     print('    Linux system name:', socket.gethostname())
-    print('    Linux system version:',os.popen('cat /etc/redhat-release').read().strip())
+    print('    Linux system version:',os.popen('cat /etc/os-release').read().strip())
     print('    Python executable:',sys.executable)
     print('    Python version: ',sys.version_info.major,sys.version_info.minor,sys.version_info.micro,sep='')
     print('    OS Platform:',sys.platform)
