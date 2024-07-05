@@ -6,6 +6,7 @@ This will setup and configure git and GitHub on Matrix. Run everything as your l
 ```bash
 git config --global user.name "Firstname Lastname"
 git config --global user.email "yoursenecaid@myseneca.ca"
+git config --global pull.rebase false
 ```
 (optional) You may want to add a key to Github to reduce password prompts. Generate an SSH key-pair to add to your GitHub account:
 ```bash
