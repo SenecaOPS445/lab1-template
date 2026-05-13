@@ -250,7 +250,11 @@ def github_email():
     return out
 
 def vscode_conf():
-    ver = os.popen('code --version').read().split()[0]
+    vscode = os.popen('code --version').read()
+    if vscode == '':
+        ver = 'not found'
+    else:
+        ver = vscode.split()[0]
     import getpass
     default = f'/home/{getpass.getuser()}/.config/Code/User/settings.json'
     try:
